@@ -1,4 +1,4 @@
-package com.devgun.sample.springboot.domain.user;
+package com.devgun.sample.springboot.domain.user.role;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

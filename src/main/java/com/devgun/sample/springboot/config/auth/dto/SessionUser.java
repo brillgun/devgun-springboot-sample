@@ -1,19 +1,19 @@
 package com.devgun.sample.springboot.config.auth.dto;
 
 import com.devgun.sample.springboot.domain.user.User;
+import lombok.Getter;
 
-public class SessionUser {
-        String name;
-        String email;
-        String picture;
+import java.io.Serializable;
+
+@Getter
+public class SessionUser implements Serializable {
+    private String name;
+    private String email;
+    private String picture;
 
     public SessionUser(User user) {
-        this.name = name;
-        this.email = email;
-        this.picture = picture;
-    }
-
-    public Object getName() {
-        return name;
+        this.name = user.getName();
+        this.email = user.getEmail();
+        this.picture = user.getPicture();
     }
 }

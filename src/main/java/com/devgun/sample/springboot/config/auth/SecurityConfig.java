@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.oauth2.client.userinfo.CustomUserTypesOAuth2UserService;
 
 @RequiredArgsConstructor
-@EnableWebSecurity
+@EnableWebSecurity //1.
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final CustomOAuth2UserService customOAuth2UserService;
 
@@ -16,18 +16,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .headers().frameOptions().disable()
-            .and()
-                .authorizeRequests()
-                .antMatchers("/","/css/**","/images/**","/js/**","/h2-console/**").permitAll()
-                .antMatchers("/api/v1/**").hasRole(Role.USER.name())
-                .anyRequest().authenticated()
-            .and()
+                .headers().frameOptions().disable() //2.
+                .and()
+                .authorizeRequests() //3.
+                .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**").permitAll()
+                .antMatchers("/api/v1/**").hasRole(Role.USER.name()) //4.
+                .anyRequest().authenticated() //5.
+                .and()
                 .logout()
-                    .logoutSuccessUrl("/")
-            .and()
-                .oauth2Login()
-                    .userInfoEndpoint()
-                        .userService(customOAuth2UserService);
+                .logoutSuccessUrl("/") //6.
+                .and()
+                .oauth2Login() //7.
+                .userInfoEndpoint() //8.
+                .userService(customOAuth2UserService); //9.
     }
 }
